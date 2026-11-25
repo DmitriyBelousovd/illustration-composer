@@ -19,7 +19,6 @@ const backgroundInput = document.querySelector("#background");
 const status = document.querySelector("#status");
 const layers = document.querySelector("#layers");
 const swatches = document.querySelector("#swatches");
-const objectSwatches = document.querySelector("#object-swatches");
 
 let catalog = [];
 let palettes = { L: [], S: [] };
@@ -132,15 +131,6 @@ function renderPalettes() {
       scene.draw();
     });
     swatches.append(button);
-  }
-  objectSwatches.replaceChildren();
-  for (const color of scheme.objects) {
-    const chip = document.createElement("span");
-    chip.className = "swatch";
-    chip.style.background = color;
-    chip.title = colorName(color);
-    chip.append(swatchTip(color));
-    objectSwatches.append(chip);
   }
 }
 
