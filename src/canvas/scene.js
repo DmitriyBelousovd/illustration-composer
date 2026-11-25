@@ -18,6 +18,7 @@ export class Scene {
     this.format = { width: 1000, height: 1000 };
     this.plate = null;
     this.fillColor = null;
+    this.objectFill = null;
     this.backgroundColors = [];
     this.selected = null;
     this.onChange = () => {};
@@ -118,7 +119,7 @@ export class Scene {
 
     for (const item of this.items) {
       const source = await this.load(item.file);
-      const painted = paintSvg(source, item.scheme, item.role);
+      const painted = paintSvg(source, item.scheme, item.role, this.objectFill);
       const group = svgEl("g", { "data-uid": item.uid });
       group.setAttribute(
         "transform",

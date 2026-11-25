@@ -29,17 +29,23 @@ export function mapColor(value, scheme, role) {
   return value;
 }
 
-export function paintSvg(svgText, scheme, role) {
+export function paintSvg(svgText, scheme, role, fillOverride) {
   const doc = new DOMParser().parseFromString(svgText, "image/svg+xml");
   const root = doc.documentElement;
   const viewBox = root.getAttribute("viewBox").trim().split(/[\s,]+/).map(Number);
   const [minX, minY, width, height] = viewBox;
+  const override = fillOverride ? normalizeColor(fillOverride) : "";
   if (scheme) {
     for (const element of root.querySelectorAll("*")) {
       for (const attr of ["fill", "stroke"]) {
         const value = element.getAttribute(attr);
         if (!value || value === "none" || value.startsWith("url(")) continue;
-        element.setAttribute(attr, mapColor(value, scheme, role));
+        let next = mapColor(value, scheme, role);
+        if (override && role !== "background" && attr === "fill") {
+          const mapped = normalizeColor(next);
+          if (mapped && mapped !== "none" && mapped !== "#181817") next = fillOverride;
+        }
+        element.setAttribute(attr, next);
       }
     }
   }

@@ -24,6 +24,7 @@ const objectSwatches = document.querySelector("#object-swatches");
 let catalog = [];
 let palettes = { L: [], S: [] };
 let chosenFill = null;
+let chosenObjectFill = null;
 
 function schemeRecord() {
   return palettes[sizeInput.value].find((item) => item.id === schemeInput.value);
@@ -99,10 +100,17 @@ function activeFill() {
   return match || allowed[0];
 }
 
+function activeObjectFill() {
+  if (!chosenObjectFill) return null;
+  const match = schemeRecord().objects.find((color) => colorKey(color) === colorKey(chosenObjectFill));
+  return match || null;
+}
+
 function syncFill() {
   const scheme = schemeRecord();
   scene.backgroundColors = scheme.background;
   scene.fillColor = activeFill();
+  scene.objectFill = activeObjectFill();
 }
 
 function swatchTip(color) {
@@ -133,14 +141,25 @@ function renderPalettes() {
     });
     swatches.append(button);
   }
+  const objectSelected = scene.objectFill ? colorKey(scene.objectFill) : "";
   objectSwatches.replaceChildren();
   for (const color of scheme.objects) {
-    const chip = document.createElement("span");
-    chip.className = "swatch";
-    chip.style.background = color;
-    chip.title = colorName(color);
-    chip.append(swatchTip(color));
-    objectSwatches.append(chip);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "swatch";
+    button.style.background = color;
+    button.setAttribute("aria-label", colorName(color));
+    const pressed = colorKey(color) === objectSelected;
+    button.classList.toggle("is-selected", pressed);
+    button.setAttribute("aria-pressed", pressed ? "true" : "false");
+    button.append(swatchTip(color));
+    button.addEventListener("click", () => {
+      chosenObjectFill = pressed ? null : color;
+      syncFill();
+      scene.draw();
+      say(scene.objectFill ? `Цвет предметов: ${colorName(scene.objectFill)}.` : "Предметы снова в цветах схемы.");
+    });
+    objectSwatches.append(button);
   }
 }
 
@@ -277,6 +296,9 @@ sizeInput.addEventListener("change", async () => {
   await applyLayout(scene.items.map(({ objectId, role }) => ({ objectId, role })), false);
 });
 schemeInput.addEventListener("change", async () => {
+  const resetObjects = Boolean(chosenObjectFill);
+  chosenObjectFill = null;
+  if (resetObjects) say("Предметы снова в цветах схемы.");
   if (!scene.items.length) {
     syncFill();
     renderLayers();
