@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конструктор иллюстраций</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <p class="mark">Конструктор</p>
+    <h1>Сборка иллюстрации из библиотеки</h1>
+  </header>
+  <main>
+    <section class="panel">
+      <label>
+        Метафора или заголовок
+        <textarea id="metaphor" rows="3" placeholder="учёба ночью"></textarea>
+      </label>
+      <button id="compose-metaphor" type="button">Собрать по смыслу</button>
+      <label>
+        Названия предметов
+        <input id="names" list="catalog-names" placeholder="книга, лампа, ручка">
+      </label>
+      <datalist id="catalog-names">
+        <option value="книга"></option>
+        <option value="телефон"></option>
+        <option value="пазл"></option>
+        <option value="монета"></option>
+        <option value="наушники"></option>
+        <option value="лампа"></option>
+        <option value="цветы"></option>
+        <option value="кошелёк"></option>
+        <option value="папка"></option>
+        <option value="ручка"></option>
+      </datalist>
+      <button id="compose-names" type="button">Собрать по названиям</button>
+      <div class="choices">
+        <label>Размер
+          <select id="size">
+            <option value="L">L</option>
+            <option value="S">S</option>
+          </select>
+        </label>
+        <label>Схема
+          <select id="scheme">
+            <option value="violet">Фиолетовая</option>
+            <option value="orange">Оранжевая</option>
+            <option value="mint">Бирюзовая</option>
+          </select>
+        </label>
+        <label>Формат
+          <select id="format">
+            <option value="square">1000×1000</option>
+            <option value="wide">1200×630</option>
+            <option value="tall">800×1200</option>
+          </select>
+        </label>
+      </div>
+      <label class="check"><input id="background" type="checkbox"> Добавить фоновые копии</label>
+      <p class="swatch-label">Цвета фона</p>
+      <div id="swatches" class="swatches" aria-label="Цвета фона"></div>
+      <p class="swatch-label">Цвета объектов</p>
+      <div id="object-swatches" class="swatches" aria-label="Цвета объектов"></div>
+      <p id="status">Выберите смысл или названия предметов.</p>
+      <div class="tools">
+        <button id="rotate-left" type="button">−15°</button>
+        <button id="rotate-right" type="button">+15°</button>
+        <button id="duplicate" type="button">Дубль</button>
+        <button id="down" type="button">Ниже</button>
+        <button id="up" type="button">Выше</button>
+        <button id="remove" type="button">Удалить</button>
+      </div>
+      <div id="layers" class="layers"></div>
+      <button id="download" type="button" class="download">Скачать SVG</button>
+    </section>
+    <section class="board">
+      <svg id="stage" xmlns="http://www.w3.org/2000/svg"></svg>
+    </section>
+  </main>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

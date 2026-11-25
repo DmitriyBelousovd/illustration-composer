@@ -1,0 +1,54 @@
+{
+  "L": [
+    {
+      "id": "violet",
+      "title": "Фиолетовая",
+      "size": "L",
+      "background": ["#D7CDF5", "#AA9BF0", "#7864D7", "#181817"],
+      "objects": ["#F9ECB0", "#F9A3AA", "#FFE3E1", "white"],
+      "backgroundFile": "Библиотека компонентов/фоны/L/violet.svg"
+    },
+    {
+      "id": "orange",
+      "title": "Оранжевая",
+      "size": "L",
+      "background": ["#FDD7B9", "#FAC896", "#D27532", "#181817"],
+      "objects": ["#F9ECB0", "#80DADA", "#BEEBEB", "white"],
+      "backgroundFile": "Библиотека компонентов/фоны/L/orange.svg"
+    },
+    {
+      "id": "mint",
+      "title": "Бирюзовая",
+      "size": "L",
+      "background": ["#BEEBEB", "#80DADA", "#5ABEBE", "#181817"],
+      "objects": ["#FFD4F2", "#6D7BFC", "#B6C6FE", "white"],
+      "backgroundFile": "Библиотека компонентов/фоны/L/mint.svg"
+    }
+  ],
+  "S": [
+    {
+      "id": "violet",
+      "title": "Фиолетовая",
+      "size": "S",
+      "background": ["#D7CDF5", "#AA9BF0", "#7864D7", "#181817"],
+      "objects": ["#F9ECB0", "#F9A3AA", "#FFE3E1", "white"],
+      "backgroundFile": "Библиотека компонентов/фоны/S/violet.svg"
+    },
+    {
+      "id": "orange",
+      "title": "Оранжевая",
+      "size": "S",
+      "background": ["#FDD7B9", "#FAC896", "#D27532", "#181817"],
+      "objects": ["#F9ECB0", "#80DADA", "#BEEBEB", "white"],
+      "backgroundFile": "Библиотека компонентов/фоны/S/orange.svg"
+    },
+    {
+      "id": "mint",
+      "title": "Бирюзовая",
+      "size": "S",
+      "background": ["#BEEBEB", "#80DADA", "#5ABEBE", "#181817"],
+      "objects": ["#FFD4F2", "#6D7BFC", "#B6C6FE", "white"],
+      "backgroundFile": "Библиотека компонентов/фоны/S/mint.svg"
+    }
+  ]
+}
